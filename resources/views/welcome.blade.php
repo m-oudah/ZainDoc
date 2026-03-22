@@ -15,7 +15,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- FontAwesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Secure, intelligent, and bilingual document management for modern enterprises. ZainDoc offers version control, smart collections, and audit trails.">
@@ -49,25 +49,38 @@
 
             <!-- Navigation Links (Desktop) -->
             <div class="hidden md:flex items-center space-x-8 rtl:space-x-reverse font-semibold">
-                <a href="#features" class="text-zinc-600 dark:text-zinc-400 hover:text-zain-600 transition">Features</a>
-                <a href="#about" class="text-zinc-600 dark:text-zinc-400 hover:text-zain-600 transition">About</a>
-                <a href="#security" class="text-zinc-600 dark:text-zinc-400 hover:text-zain-600 transition">Security</a>
+                <a href="#features" class="text-zinc-600 dark:text-zinc-400 hover:text-zain-600 transition">
+                    {{ app()->getLocale() == 'ar' ? 'المميزات' : 'Features' }}
+                </a>
+                <a href="#about" class="text-zinc-600 dark:text-zinc-400 hover:text-zain-600 transition">
+                    {{ app()->getLocale() == 'ar' ? 'عن المنظومة' : 'About' }}
+                </a>
+                <a href="#security" class="text-zinc-600 dark:text-zinc-400 hover:text-zain-600 transition">
+                    {{ app()->getLocale() == 'ar' ? 'الأمان' : 'Security' }}
+                </a>
             </div>
 
             <!-- Action Buttons & Locale Toggle -->
             <div class="flex items-center space-x-4 rtl:space-x-reverse">
                 <!-- Locale Toggle -->
-                <button class="bg-white/50 dark:bg-zinc-800/50 p-2 rounded-lg text-zinc-500 hover:bg-white dark:hover:bg-zinc-800 border border-white/20 transition shadow-sm">
-                    <i class="fa-solid fa-globe"></i>
-                    <span class="ms-1 uppercase text-xs">{{ app()->getLocale() }}</span>
-                </button>
+                <a href="{{ route('language.switch', app()->getLocale() == 'ar' ? 'en' : 'ar') }}" 
+                   class="flex items-center gap-2 bg-white/50 dark:bg-zinc-800/50 px-3 py-2 rounded-lg text-zinc-950 dark:text-white hover:bg-white dark:hover:bg-zinc-800 border border-white/20 transition shadow-sm font-bold">
+                    <i class="fa-solid fa-globe text-zain-600"></i>
+                    <span class="text-xs uppercase tracking-widest">{{ app()->getLocale() == 'ar' ? 'English' : 'العربية' }}</span>
+                </a>
                 
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="btn-premium btn-primary py-2 px-5 text-sm">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="btn-premium btn-primary py-2 px-5 text-sm">
+                            {{ app()->getLocale() == 'ar' ? 'لوحة التحكم' : 'Dashboard' }}
+                        </a>
                     @else
-                        <a href="{{ route('login') }}" class="text-zinc-600 dark:text-zinc-400 font-semibold hover:text-zain-600 transition px-2">Log In</a>
-                        <a href="{{ route('register') }}" class="btn-premium btn-primary py-2 px-5 text-sm">Get Started</a>
+                        <a href="{{ route('login') }}" class="text-zinc-600 dark:text-zinc-400 font-semibold hover:text-zain-600 transition px-2">
+                            {{ app()->getLocale() == 'ar' ? 'دخول' : 'Log In' }}
+                        </a>
+                        <a href="#" class="btn-premium btn-primary py-2 px-5 text-sm">
+                            {{ app()->getLocale() == 'ar' ? 'ابدأ الآن' : 'Get Started' }}
+                        </a>
                     @endauth
                 @endif
             </div>
@@ -88,15 +101,28 @@
                     <span>Intelligent Document Archiving v1.0</span>
                 </div>
                 <h1 class="text-5xl lg:text-7xl font-black text-zinc-950 dark:text-white leading-[1.1] mb-6">
-                    Archive Smarter. <br>
-                    <span class="text-zain-600">Access Faster.</span>
+                    @if(app()->getLocale() == 'ar')
+                        أرشفة ذكية. <br>
+                        <span class="text-zain-600">وصول أسرع.</span>
+                    @else
+                        Archive Smarter. <br>
+                        <span class="text-zain-600">Access Faster.</span>
+                    @endif
                 </h1>
                 <p class="text-lg lg:text-xl text-zinc-600 dark:text-zinc-400 mb-10 leading-relaxed max-w-lg">
-                    Experience deep Arabic localization, enterprise-grade security, and AI-powered categorization in one seamless platform designed for the modern workplace.
+                    @if(app()->getLocale() == 'ar')
+                        استمتع بتجربة أرشفة إبداعية بتوطين عربي عميق، وأمان بمستوى المؤسسات الكبرى، وتصنيف ذكي مدعوم بالذكاء الاصطناعي في منصة واحدة سلسة.
+                    @else
+                        Experience deep Arabic localization, enterprise-grade security, and AI-powered categorization in one seamless platform designed for the modern workplace.
+                    @endif
                 </p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 rtl:sm:space-x-reverse">
                     <a href="#" class="btn-premium btn-primary text-center justify-center">
-                        Explore Demo <i class="fa-solid fa-arrow-right ms-2 rtl:rotate-180"></i>
+                        @if(app()->getLocale() == 'ar')
+                            استكشف العرض التجريبي <i class="fa-solid fa-arrow-left me-2"></i>
+                        @else
+                            Explore Demo <i class="fa-solid fa-arrow-right ms-2 rtl:rotate-180"></i>
+                        @endif
                     </a>
                     <a href="#" class="btn-premium btn-secondary text-center justify-center group">
                         Watch Video <i class="fa-solid fa-play ms-2 text-zain-600 group-hover:scale-110 transition-transform"></i>
