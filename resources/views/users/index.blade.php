@@ -45,14 +45,14 @@
                 });
         }
     }">
-        <div class="rounded-3xl border border-zain-100 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 space-y-6">
-            <div class="flex items-center justify-between">
-                <h3 class="text-xl font-black text-zain-950 dark:text-white font-cairo">
+        <div class="rounded-md border border-gray-200 bg-white p-5 shadow-sm space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                <h3 class="text-lg font-bold text-gray-900 font-cairo">
                     {{ app()->getLocale() == 'ar' ? 'المستخدمون المسجلون' : 'Registered Users' }}
                 </h3>
                 <div class="flex gap-4">
-                    <button @click="openCreate()" class="btn-premium btn-primary py-2 px-6 text-sm">
-                        <i class="fa-solid fa-user-plus me-2"></i> {{ app()->getLocale() == 'ar' ? 'إضافة مستخدم' : 'Add User' }}
+                    <button @click="openCreate()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-semibold shadow-sm flex items-center gap-2 transition-colors">
+                        <i class="fa-solid fa-user-plus"></i> {{ app()->getLocale() == 'ar' ? 'إضافة مستخدم' : 'Add User' }}
                     </button>
                 </div>
             </div>
@@ -61,41 +61,41 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-left rtl:text-right">
                     <thead>
-                        <tr class="text-zain-500/40 text-[0.65rem] uppercase tracking-[0.2em] font-black border-b border-zain-100 dark:border-zinc-800">
-                            <th class="pb-4 ps-4">{{ app()->getLocale() == 'ar' ? 'الاسم' : 'Name' }}</th>
-                            <th class="pb-4">{{ app()->getLocale() == 'ar' ? 'البريد الإلكتروني' : 'Email' }}</th>
-                            <th class="pb-4">{{ app()->getLocale() == 'ar' ? 'تاريخ التسجيل' : 'Registered At' }}</th>
-                            <th class="pb-4 text-center">{{ app()->getLocale() == 'ar' ? 'إجراء' : 'Action' }}</th>
+                        <tr class="text-gray-500 text-xs uppercase tracking-wider font-semibold border-b border-gray-200">
+                            <th class="pb-3 ps-2">{{ app()->getLocale() == 'ar' ? 'الاسم' : 'Name' }}</th>
+                            <th class="pb-3">{{ app()->getLocale() == 'ar' ? 'البريد الإلكتروني' : 'Email' }}</th>
+                            <th class="pb-3">{{ app()->getLocale() == 'ar' ? 'تاريخ التسجيل' : 'Registered At' }}</th>
+                            <th class="pb-3 text-center w-24">{{ app()->getLocale() == 'ar' ? 'إجراء' : 'Action' }}</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-zain-50 dark:divide-zinc-800/50">
+                    <tbody class="divide-y divide-gray-100">
                         @foreach($users as $user)
-                        <tr class="group hover:bg-zain-50/50 dark:hover:bg-white/5 transition-colors duration-200">
-                            <td class="py-5 ps-4">
+                        <tr class="hover:bg-gray-50 transition-colors duration-200 text-sm">
+                            <td class="py-3 ps-2">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-zain-950 text-white flex items-center justify-center font-bold">
+                                    <div class="w-8 h-8 rounded shrink-0 bg-gray-100 text-gray-700 flex items-center justify-center font-bold border border-gray-200 text-xs">
                                         {{ substr($user->name, 0, 1) }}
                                     </div>
-                                    <p class="font-bold text-zain-950 dark:text-white">{{ $user->name }}</p>
+                                    <p class="font-semibold text-gray-900">{{ $user->name }}</p>
                                 </div>
                             </td>
-                            <td class="py-5">
-                                <span class="text-sm font-medium text-zain-600">{{ $user->email }}</span>
+                            <td class="py-3">
+                                <span class="font-medium text-gray-600">{{ $user->email }}</span>
                             </td>
-                            <td class="py-5 text-sm text-zain-500 font-medium">
+                            <td class="py-3 text-gray-500">
                                 {{ $user->created_at->format('Y-m-d') }}
                             </td>
-                            <td class="py-5 text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <button @click="openEdit({{ $user->toJson() }})" class="p-2 rounded-xl border border-zain-100 text-zain-400 hover:bg-zain-500 hover:text-white transition-all">
-                                        <i class="fa-solid fa-user-gear"></i>
+                            <td class="py-3 text-center">
+                                <div class="flex items-center justify-center gap-1">
+                                    <button @click="openEdit({{ $user->toJson() }})" class="p-1.5 rounded text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Edit">
+                                        <i class="fa-solid fa-user-gear text-sm"></i>
                                     </button>
                                     @if($user->id !== auth()->id())
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?')" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="p-2 rounded-xl border border-red-100 text-red-400 hover:bg-red-500 hover:text-white transition-all tabular-nums">
-                                            <i class="fa-solid fa-user-minus"></i>
+                                        <button type="submit" class="p-1.5 rounded text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Delete">
+                                            <i class="fa-solid fa-user-minus text-sm"></i>
                                         </button>
                                     </form>
                                     @endif
@@ -113,42 +113,53 @@
         </div>
 
         <!-- User Modal -->
-        <div x-show="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-zain-950/60 backdrop-blur-sm" x-cloak>
-            <div class="glassmorphism w-full max-w-md rounded-[2.5rem] p-8 space-y-8" @click.away="showModal = false">
-                <div class="text-center">
-                    <h3 class="text-3xl font-black text-white mb-2" x-text="mode === 'create' ? 'Add User' : 'Edit User'"></h3>
-                    <p class="text-zain-100/60 font-medium">{{ app()->getLocale() == 'ar' ? 'يرجى إدخال بيانات المستخدم' : 'Please enter user credentials' }}</p>
+        <div x-show="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm" x-cloak
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0">
+            <div class="bg-white w-full max-w-md rounded-md shadow-xl border border-gray-200 overflow-hidden" @click.away="showModal = false">
+                <div class="px-6 py-4 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight" x-text="mode === 'create' ? 'Add User' : 'Edit User'"></h3>
+                        <p class="text-gray-500 text-xs mt-1">{{ app()->getLocale() == 'ar' ? 'يرجى إدخال بيانات المستخدم' : 'Please enter user credentials' }}</p>
+                    </div>
+                    <button @click="showModal = false" class="text-gray-400 hover:text-gray-600">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
                 </div>
 
-                <form @submit.prevent="saveUser()" class="space-y-4">
-                    <div x-show="errors.length > 0" class="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl mb-4" x-cloak>
-                        <ul class="list-disc list-inside text-sm font-bold text-red-200">
+                <form @submit.prevent="saveUser()" class="p-6 space-y-4 text-sm">
+                    <div x-show="errors.length > 0" class="p-3 bg-red-50 border border-red-200 rounded-md mb-4" x-cloak>
+                        <ul class="list-disc list-inside text-xs font-semibold text-red-600">
                             <template x-for="error in errors" :key="error">
                                 <li x-text="error"></li>
                             </template>
                         </ul>
                     </div>
 
-                    <div class="space-y-2">
-                        <label class="text-sm font-bold text-zain-100">{{ app()->getLocale() == 'ar' ? 'الاسم الكامل' : 'Full Name' }}</label>
-                        <input type="text" name="name" x-model="currentUser.name" required class="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-zain-500 outline-none">
+                    <div class="space-y-1.5">
+                        <label class="block font-semibold text-gray-700">{{ app()->getLocale() == 'ar' ? 'الاسم الكامل' : 'Full Name' }}</label>
+                        <input type="text" name="name" x-model="currentUser.name" required class="w-full px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors">
                     </div>
 
-                    <div class="space-y-2">
-                        <label class="text-sm font-bold text-zain-100">{{ app()->getLocale() == 'ar' ? 'البريد الإلكتروني' : 'Email Address' }}</label>
-                        <input type="email" name="email" x-model="currentUser.email" required class="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-zain-500 outline-none">
+                    <div class="space-y-1.5">
+                        <label class="block font-semibold text-gray-700">{{ app()->getLocale() == 'ar' ? 'البريد الإلكتروني' : 'Email Address' }}</label>
+                        <input type="email" name="email" x-model="currentUser.email" required class="w-full px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors">
                     </div>
 
-                    <div class="space-y-2">
-                        <label class="text-sm font-bold text-zain-100">{{ app()->getLocale() == 'ar' ? 'كلمة المرور' : 'Password' }}</label>
-                        <input type="password" name="password" x-model="currentUser.password" :required="mode === 'create'" class="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-zain-500 outline-none" :placeholder="mode === 'edit' ? 'Leave blank to keep current' : ''">
+                    <div class="space-y-1.5">
+                        <label class="block font-semibold text-gray-700">{{ app()->getLocale() == 'ar' ? 'كلمة المرور' : 'Password' }}</label>
+                        <input type="password" name="password" x-model="currentUser.password" :required="mode === 'create'" class="w-full px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors" :placeholder="mode === 'edit' ? 'Leave blank to keep current' : ''">
                     </div>
 
-                    <div class="flex gap-4 pt-4">
-                        <button type="button" @click="showModal = false" class="flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 border border-white/10 transition-all font-cairo">
+                    <div class="flex gap-3 pt-3 border-t border-gray-100 mt-4">
+                        <button type="button" @click="showModal = false" class="flex-1 py-2 rounded-md bg-white border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors font-cairo">
                             {{ app()->getLocale() == 'ar' ? 'إلغاء' : 'Cancel' }}
                         </button>
-                        <button type="submit" :disabled="isSaving" class="flex-1 py-4 rounded-2xl bg-zain-600 text-white font-bold hover:bg-zain-700 transition-all shadow-xl shadow-zain-600/30 flex justify-center items-center gap-2 font-cairo">
+                        <button type="submit" :disabled="isSaving" class="flex-1 py-2 rounded-md bg-blue-600 border border-transparent text-white font-semibold text-sm hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-sm font-cairo">
                             <span x-show="!isSaving">{{ app()->getLocale() == 'ar' ? 'حفظ' : 'Save User' }}</span>
                             <i x-show="isSaving" class="fa-solid fa-spinner animate-spin" x-cloak></i>
                         </button>
