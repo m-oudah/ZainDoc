@@ -110,7 +110,7 @@ class DocumentController extends Controller
 
     public function destroy(Document $document)
     {
-        $document->delete();
-        return back()->with('success', 'Document deleted successfully.');
+        $message = app()->getLocale() === 'ar' ? 'تم حذف المستند بنجاح.' : 'Document deleted successfully.';
+        return back()->with('success', $message);
     }
 }

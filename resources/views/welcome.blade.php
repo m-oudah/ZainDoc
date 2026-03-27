@@ -38,7 +38,7 @@
                 <div class="w-10 h-10 bg-zain-600 rounded-xl flex items-center justify-center text-white shadow-lg transition-transform group-hover:rotate-12">
                     <i class="fa-solid fa-folder-tree text-lg"></i>
                 </div>
-                <span class="text-2xl font-black text-zain-950 dark:text-white tracking-tight">ZainDoc</span>
+                <span class="text-2xl font-black text-zain-950 dark:text-white tracking-tight" style="margin-right: 10px;">ZainDoc</span>
             </a>
 
             <!-- Navigation Links (Desktop) -->
@@ -49,7 +49,7 @@
                 <a href="#about" class="text-zinc-600 dark:text-zinc-400 hover:text-zain-600 transition">
                     {{ app()->getLocale() == 'ar' ? 'عن المنظومة' : 'About' }}
                 </a>
-                <a href="#security" class="text-zinc-600 dark:text-zinc-400 hover:text-zain-600 transition">
+                <a href="#security" class="text-zinc-600 dark:text-zinc-400 hover:text-zain-600 transition" style="margin-right: 10px;">
                     {{ app()->getLocale() == 'ar' ? 'الأمان' : 'Security' }}
                 </a>
             </div>
@@ -65,14 +65,11 @@
                 
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="btn-premium btn-primary py-2 px-5 text-sm">
+                        <a href="{{ url('/dashboard') }}" class="btn-premium btn-primary py-2 px-5 text-sm" style="margin-right: 10px;">
                             {{ app()->getLocale() == 'ar' ? 'لوحة التحكم' : 'Dashboard' }}
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="text-zinc-600 dark:text-zinc-400 font-semibold hover:text-zain-600 transition px-2">
-                            {{ app()->getLocale() == 'ar' ? 'دخول' : 'Log In' }}
-                        </a>
-                        <a href="#" class="btn-premium btn-primary py-2 px-5 text-sm">
+                        <a href="{{ route('login') }}" class="btn-premium btn-primary py-2 px-5 text-sm">
                             {{ app()->getLocale() == 'ar' ? 'ابدأ الآن' : 'Get Started' }}
                         </a>
                     @endauth
@@ -94,7 +91,7 @@
                     <span class="flex h-2 w-2 rounded-full bg-zain-600 animate-pulse"></span>
                     <span>Intelligent Document Archiving v1.0</span>
                 </div>
-                <h1 class="text-5xl lg:text-7xl font-black text-zinc-950 dark:text-white leading-[1.1] mb-6">
+                <h1 class="text-4xl lg:text-5xl font-black text-zinc-950 dark:text-white leading-[1.1] mb-6">
                     @if(app()->getLocale() == 'ar')
                         أرشفة ذكية. <br>
                         <span class="text-zain-600">وصول أسرع.</span>
@@ -118,22 +115,19 @@
                             Explore Demo <i class="fa-solid fa-arrow-right ms-2 rtl:rotate-180"></i>
                         @endif
                     </a>
-                    <a href="#" class="btn-premium btn-secondary text-center justify-center group">
-                        Watch Video <i class="fa-solid fa-play ms-2 text-zain-600 group-hover:scale-110 transition-transform"></i>
+                    <a href="#" class="btn-premium btn-secondary text-center justify-center group" style="margin-right: 10px;">
+                        {{ app()->getLocale() == 'ar' ? 'شاهد الفيديو' : 'Watch Video' }} <i class="fa-solid fa-play ms-2 text-zain-600 group-hover:scale-110 transition-transform"></i>
                     </a>
                 </div>
                 
-                <div class="mt-8 flex items-center space-x-6 rtl:space-x-reverse text-sm font-medium text-zinc-500">
-                    <span class="flex items-center"><i class="fa-solid fa-check text-zain-600 me-2"></i> No credit card</span>
-                    <span class="flex items-center"><i class="fa-solid fa-check text-zain-600 me-2"></i> Free setup</span>
-                </div>
+
             </div>
 
             <!-- Hero Illustration -->
             <div class="relative group fade-in-up" style="animation-delay: 0.2s">
-                <div class="absolute -inset-4 bg-zain-500/10 rounded-3xl blur-2xl group-hover:bg-zain-500/20 transition duration-500"></div>
-                <div class="relative glassmorphism rounded-3xl p-4 shadow-2xl border-white/50">
-                    <img src="{{ asset('images/hero.png') }}" alt="ZainDoc Workspace" class="rounded-2xl shadow-lg">
+                <div class="absolute -inset-2 bg-zain-500/10 rounded-2xl blur-xl group-hover:bg-zain-500/20 transition duration-500"></div>
+                <div class="relative glassmorphism rounded-2xl p-3 shadow-xl border-white/50 max-w-sm mx-auto">
+                    <img src="{{ asset('images/hero.png') }}" alt="ZainDoc Workspace" class="rounded-xl shadow-md">
                 </div>
             </div>
         </div>
@@ -152,8 +146,12 @@
     <!-- Key Features -->
     <section id="features" class="max-w-7xl mx-auto px-6 py-24">
         <div class="text-center max-w-2xl mx-auto mb-16">
-            <h2 class="text-4xl font-black text-zinc-950 dark:text-white mb-4">Mastering Modern Archiving</h2>
-            <p class="text-zinc-600 dark:text-zinc-400 font-medium">Built with the features government institutions and enterprises need most.</p>
+            <h2 class="text-4xl font-black text-zinc-950 dark:text-white mb-4">
+                {{ app()->getLocale() == 'ar' ? 'إتقان الأرشفة الحديثة' : 'Mastering Modern Archiving' }}
+            </h2>
+            <p class="text-zinc-600 dark:text-zinc-400 font-medium">
+                {{ app()->getLocale() == 'ar' ? 'مبني بالميزات التي تحتاجها المؤسسات الحكومية والشركات.' : 'Built with the features government institutions and enterprises need most.' }}
+            </p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
@@ -162,9 +160,11 @@
                 <div class="w-14 h-14 bg-zain-100 dark:bg-zain-900/50 text-zain-600 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-zain-600 group-hover:text-white transition duration-300">
                     <i class="fa-solid fa-code-fork"></i>
                 </div>
-                <h3 class="text-xl font-bold text-zinc-950 dark:text-white mb-3">Version Control</h3>
+                <h3 class="text-xl font-bold text-zinc-950 dark:text-white mb-3">
+                    {{ app()->getLocale() == 'ar' ? 'التحكم في الإصدارات' : 'Version Control' }}
+                </h3>
                 <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm">
-                    Track every change effortlessly. Restore historical versions and manage document "groups" with absolute precision.
+                    {{ app()->getLocale() == 'ar' ? 'تتبع كل تغيير بسهولة. استعد الإصدارات السابقة وتحكم بـ"مجموعات" المستندات بدقة مطلقة.' : 'Track every change effortlessly. Restore historical versions and manage document "groups" with absolute precision.' }}
                 </p>
             </div>
 
@@ -173,9 +173,11 @@
                 <div class="w-14 h-14 bg-amber-100 dark:bg-amber-900/50 text-amber-600 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-amber-600 group-hover:text-white transition duration-300">
                     <i class="fa-solid fa-magnifying-glass-chart"></i>
                 </div>
-                <h3 class="text-xl font-bold text-zinc-950 dark:text-white mb-3">Smart Collections</h3>
+                <h3 class="text-xl font-bold text-zinc-950 dark:text-white mb-3">
+                    {{ app()->getLocale() == 'ar' ? 'المجموعات الذكية' : 'Smart Collections' }}
+                </h3>
                 <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm">
-                    Define rules and watch your folders organize themselves. Dynamic metadata filtering keeps everything in its place.
+                    {{ app()->getLocale() == 'ar' ? 'حدد القواعد وشاهد المجلدات تنظم نفسها. الفلترة الديناميكية للبيانات الوصفية تضع كل شيء في مكانه.' : 'Define rules and watch your folders organize themselves. Dynamic metadata filtering keeps everything in its place.' }}
                 </p>
             </div>
 
@@ -184,9 +186,11 @@
                 <div class="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-emerald-600 group-hover:text-white transition duration-300">
                     <i class="fa-solid fa-language"></i>
                 </div>
-                <h3 class="text-xl font-bold text-zinc-950 dark:text-white mb-3">RTL-First Interface</h3>
+                <h3 class="text-xl font-bold text-zinc-950 dark:text-white mb-3">
+                    {{ app()->getLocale() == 'ar' ? 'واجهة عربية أصيلة' : 'RTL-First Interface' }}
+                </h3>
                 <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm">
-                    No separate stylesheets. A single, high-performance bidirectional codebase using modern CSS logical properties.
+                    {{ app()->getLocale() == 'ar' ? 'لا توجد أوراق أنماط منفصلة. قاعدة بيانات ثنائية الاتجاه عالية الأداء باستخدام خصائص CSS المنطقية الحديثة.' : 'No separate stylesheets. A single, high-performance bidirectional codebase using modern CSS logical properties.' }}
                 </p>
             </div>
         </div>
@@ -219,13 +223,13 @@
         </div>
         
         <div class="flex items-center space-x-6 rtl:space-x-reverse">
-            <a href="#" class="hover:text-zain-600">Privacy Policy</a>
-            <a href="#" class="hover:text-zain-600">Terms of Service</a>
-            <a href="#" class="hover:text-zain-600">Documentation</a>
+            <a href="#" class="hover:text-zain-600">{{ app()->getLocale() == 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy' }}</a>
+            <a href="#" class="hover:text-zain-600">{{ app()->getLocale() == 'ar' ? 'شروط الخدمة' : 'Terms of Service' }}</a>
+            <a href="#" class="hover:text-zain-600">{{ app()->getLocale() == 'ar' ? 'التوثيق' : 'Documentation' }}</a>
         </div>
 
         <div class="rtl:text-left text-right">
-            <span>&copy; 2026 ZainDoc. All Rights Reserved.</span>
+            <span>{{ app()->getLocale() == 'ar' ? '© 2026 زين دوك. جميع الحقوق محفوظة.' : '© 2026 ZainDoc. All Rights Reserved.' }}</span>
         </div>
     </footer>
 

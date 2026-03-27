@@ -21,14 +21,6 @@
     </style>
 </head>
 <body class="h-full bg-gray-50 font-cairo selection:bg-blue-500 selection:text-white overflow-hidden flex items-center justify-center p-6 antialiased">
-    <!-- Language Switcher (Top Left) -->
-    <div class="absolute top-6 left-6 z-50">
-        <a href="{{ route('language.switch', app()->getLocale() == 'ar' ? 'en' : 'ar') }}" class="text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors uppercase tracking-widest bg-white shadow-sm px-4 py-2 rounded-full border border-gray-200 flex items-center gap-2">
-            <i class="fa-solid fa-globe"></i>
-            {{ app()->getLocale() == 'ar' ? 'Switch to English' : 'الفصحى (العربية)' }}
-        </a>
-    </div>
-
     <!-- Abstract Background -->
     <div class="absolute inset-0 opacity-40 pointer-events-none overflow-hidden">
         <div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-blue-100 rounded-full blur-[100px] animate-pulse"></div>

@@ -29,7 +29,7 @@ class MyArchiveController extends Controller
             }
         }
             
-        $documents = $query->latest()->paginate(20)->withQueryString();
+        $documents = $query->latest()->paginate(15)->withQueryString();
             
         $folders = Folder::all();
             

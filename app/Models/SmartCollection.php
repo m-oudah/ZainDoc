@@ -14,14 +14,22 @@ class SmartCollection extends Model
         'name',
         'rules',
         'created_by',
+        'folder_id',
+        'keywords',
     ];
 
     protected $casts = [
         'rules' => 'array',
+        'keywords' => 'array',
     ];
 
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function folder(): BelongsTo
+    {
+        return $this->belongsTo(Folder::class);
     }
 }

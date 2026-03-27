@@ -73,56 +73,53 @@
     }">
     
     <!-- Sidebar -->
-    <aside class="w-64 bg-white border-l border-r border-gray-200 flex flex-col items-stretch py-8 px-4 shrink-0 relative z-20 overflow-y-auto">
+    <aside class="w-64 bg-[#1B2A4A] border-l border-r border-[#1B2A4A]/80 flex flex-col items-stretch py-8 px-4 shrink-0 relative z-20 overflow-y-auto">
         <div class="relative z-10 w-full">
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3 mb-10 px-2 group">
                 <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center shadow-sm group-hover:bg-blue-700 transition-colors">
                     <i class="fa-solid fa-folder-tree text-white text-sm"></i>
                 </div>
-                <span class="text-xl font-bold font-sans tracking-tight text-gray-900">ZainDoc</span>
+                <span class="text-xl font-bold font-sans tracking-tight text-white">ZainDoc</span>
             </a>
 
             <nav class="space-y-1">
-                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors' }}">
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('dashboard') ? 'bg-blue-500 text-white font-semibold shadow-sm' : 'text-blue-100 hover:bg-white/10 hover:text-white transition-colors' }}">
                     <i class="fa-solid fa-chart-pie w-5 text-center"></i>
                     <span class="text-sm">{{ app()->getLocale() == 'ar' ? 'لوحة التحكم' : 'Dashboard' }}</span>
                 </a>
                 <div x-data="{ archiveOpen: {{ request()->routeIs('my-archive*') ? 'true' : 'false' }} }">
                     <div class="flex items-center w-full">
-                        <a href="{{ route('my-archive') }}" class="flex-1 flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('my-archive*') && !request()->filled('folder_id') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors' }}">
+                        <a href="{{ route('my-archive') }}" class="flex-1 flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('my-archive*') && !request()->filled('folder_id') ? 'bg-blue-500 text-white font-semibold shadow-sm' : 'text-blue-100 hover:bg-white/10 hover:text-white transition-colors' }}">
                             <i class="fa-solid fa-box-archive w-5 text-center"></i>
                             <span class="truncate text-sm">{{ app()->getLocale() == 'ar' ? 'أرشيفي' : 'My Archive' }}</span>
                         </a>
-                        <button @click="archiveOpen = !archiveOpen" class="px-2 py-2.5 text-gray-400 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors ml-1 rtl:ml-0 rtl:mr-1">
-                            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" :class="archiveOpen ? 'rotate-180' : ''"></i>
-                        </button>
                     </div>
                     
-                    <div x-show="archiveOpen" x-transition class="mt-1 ml-6 rtl:ml-0 rtl:mr-6 space-y-1 border-l border-gray-200 rtl:border-l-0 rtl:border-r pl-2 rtl:pl-0 rtl:pr-2" x-cloak>
+                    <div x-show="archiveOpen" x-transition class="mt-1 ml-6 rtl:ml-0 rtl:mr-6 space-y-1 border-l border-white/20 rtl:border-l-0 rtl:border-r pl-2 rtl:pl-0 rtl:pr-2" x-cloak>
                         <a href="{{ route('my-archive', ['folder_id' => 'uncategorized']) }}" 
-                           class="flex items-center gap-2 px-3 py-2 rounded-md transition-colors {{ request('folder_id') == 'uncategorized' ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900' }}">
+                           class="flex items-center gap-2 px-3 py-2 rounded-md transition-colors {{ request('folder_id') == 'uncategorized' ? 'bg-blue-500 text-white font-semibold' : 'text-blue-200 hover:bg-white/10 hover:text-white' }}">
                             <i class="fa-regular fa-folder text-xs"></i>
                             <span class="truncate text-xs">{{ app()->getLocale() == 'ar' ? 'غير مصنف' : 'Uncategorized' }}</span>
                         </a>
                         
                         @foreach(\App\Models\Folder::all() as $folder)
                             <a href="{{ route('my-archive', ['folder_id' => $folder->id]) }}" 
-                               class="flex items-center gap-2 px-3 py-2 rounded-md transition-colors {{ request('folder_id') == $folder->id ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900' }}">
+                               class="flex items-center gap-2 px-3 py-2 rounded-md transition-colors {{ request('folder_id') == $folder->id ? 'bg-blue-500 text-white font-semibold' : 'text-blue-200 hover:bg-white/10 hover:text-white' }}">
                                 <i class="fa-regular fa-folder text-xs"></i>
                                 <span class="truncate text-xs">{{ $folder->name }}</span>
                             </a>
                         @endforeach
                     </div>
                 </div>
-                <a href="{{ route('folders.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('folders*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors' }}">
+                <a href="{{ route('folders.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('folders*') ? 'bg-blue-500 text-white font-semibold shadow-sm' : 'text-blue-100 hover:bg-white/10 hover:text-white transition-colors' }}">
                     <i class="fa-solid fa-folder-tree w-5 text-center"></i>
                     <span class="text-sm">{{ app()->getLocale() == 'ar' ? 'التصنيفات' : 'Categories' }}</span>
                 </a>
-                <a href="{{ route('smart-rules') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('smart-rules*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors' }}">
+                <a href="{{ route('smart-rules') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('smart-rules*') ? 'bg-blue-500 text-white font-semibold shadow-sm' : 'text-blue-100 hover:bg-white/10 hover:text-white transition-colors' }}">
                     <i class="fa-solid fa-robot w-5 text-center"></i>
                     <span class="text-sm">{{ app()->getLocale() == 'ar' ? 'القواعد الذكية' : 'Smart Rules' }}</span>
                 </a>
-                <a href="{{ route('users') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('users*') ? 'bg-blue-600 text-white font-semibold shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors' }}">
+                <a href="{{ route('users') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md {{ request()->routeIs('users*') ? 'bg-blue-500 text-white font-semibold shadow-sm' : 'text-blue-100 hover:bg-white/10 hover:text-white transition-colors' }}">
                     <i class="fa-solid fa-users-gear w-5 text-center"></i>
                     <span class="text-sm">{{ app()->getLocale() == 'ar' ? 'المستخدمين والصلاحيات' : 'Users & RBAC' }}</span>
                 </a>
@@ -131,7 +128,7 @@
             <div class="mt-auto pt-8 space-y-2">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-red-600 hover:bg-red-50 transition-colors text-sm font-medium">
+                    <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-red-300 hover:bg-red-500/20 hover:text-red-200 transition-colors text-sm font-bold">
                         <i class="fa-solid fa-right-from-bracket w-5 text-center"></i>
                         {{ app()->getLocale() == 'ar' ? 'تسجيل الخروج' : 'Sign Out' }}
                     </button>
